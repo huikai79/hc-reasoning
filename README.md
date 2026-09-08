@@ -20,8 +20,9 @@
 | 你使用的介面 | 安裝入口 |
 |---|---|
 | Claude 網頁版／Desktop | [下載 skill ZIP](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-claude-skill.zip) → **Customize → Skills → + → Create skill → Upload a skill** → 啟用。不用解壓縮；[找不到選單？](INSTALL.md#claude) |
-| Codex／ChatGPT desktop 的本機工作模式 | [下載 OpenAI plugin ZIP](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-openai-plugin.zip)，依[桌面安裝步驟](INSTALL.md#openai-desktop)加入本機市集 |
-| ChatGPT 網頁版 | [查看工作區上傳與 Plugins Directory 的適用條件](INSTALL.md#openai-web)；不要把 ZIP 當一般聊天附件上傳 |
+| Codex／ChatGPT desktop 的本機工作模式 | 貼上下方「Codex 桌面版」提示，直接從 GitHub 市集安裝，不必下載 ZIP |
+| ChatGPT 網頁版（工作區管理員） | **Admin → Plugins → Add → Import marketplace**，Source 填入 `https://github.com/kcchien/hc-reasoning`，Path 留空；[完整步驟](INSTALL.md#openai-web) |
+| ChatGPT 網頁版（一般個人帳號） | 尚未上架公開 Plugins Directory，目前沒有本專案已驗證的直接安裝入口 |
 
 Claude Code、Codex CLI、Cursor 等開發工具，以下兩種 Skills CLI 安裝方式擇一即可。
 
@@ -48,10 +49,10 @@ npx skills@latest add https://github.com/kcchien/hc-reasoning
 在可存取本機檔案的 Codex／ChatGPT Work 對話貼上：
 
 ```text
-請下載 https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-openai-plugin.zip，檢查並解壓縮，用 plugin-creator 加入我的本機 plugin 市集，保留其他項目，完成安裝並確認結果；不要發布或分享。
+請從 https://github.com/kcchien/hc-reasoning 安裝 hc-reasoning plugin：先執行 codex plugin marketplace add https://github.com/kcchien/hc-reasoning，再執行 codex plugin add hc-reasoning@kcchien-hc-reasoning，確認已安裝並啟用，保留其他項目；不要發布或分享。
 ```
 
-完成後重新啟動桌面 app，在 Plugins Directory 選取本機市集並確認已啟用，再開新對話。[詳細步驟與適用條件](INSTALL.md#openai-desktop)。這不是網頁版的 ZIP 上傳指令；網頁版入口見 [安裝說明](INSTALL.md#openai-web)。
+完成後重新啟動桌面 app，在 Plugins Directory 選取 `kcchien-hc-reasoning` 並確認已啟用，再開新對話。[詳細步驟與適用條件](INSTALL.md#openai-desktop)。[OpenAI plugin ZIP](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-openai-plugin.zip)僅供手動本機部署或開發者送審，不是網頁版直接安裝檔。
 
 <a id="first-use"></a>
 ## 安裝後，試第一個問題

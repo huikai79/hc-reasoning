@@ -1,0 +1,19 @@
+{
+  "name": "hc-reasoning",
+  "version": "0.1.0",
+  "description": "檢查資料能支持什麼、解法是否對得上問題，以及哪些資訊會改變決定。",
+  "author": {
+    "name": "kcchien"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "HC Reasoning",
+    "shortDescription": "這個結論，真的站得住腳嗎？",
+    "longDescription": "檢視決策、檢核證據與界定問題，分清已知事實、可能原因及待查資訊，再整理有條件的下一步。受到 Minerva HCs 啟發的獨立改編，不是官方課程或完整現行 HC 清單。",
+    "developerName": "kcchien",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": ["請用 hc-reasoning 檢查這份報告的結論與證據。", "請用 hc-reasoning 看看我準備採用的解法是否對得上問題。"],
+    "brandColor": "#0A1628"
+  }
+}

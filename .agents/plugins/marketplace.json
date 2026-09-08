@@ -1,0 +1,20 @@
+{
+  "name": "kcchien-hc-reasoning",
+  "interface": {
+    "displayName": "hc-reasoning"
+  },
+  "plugins": [
+    {
+      "name": "hc-reasoning",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hc-reasoning"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

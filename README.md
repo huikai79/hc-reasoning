@@ -19,10 +19,9 @@
 
 | 你使用的介面 | 安裝入口 |
 |---|---|
-| Claude 網頁版／Desktop | [下載 skill ZIP](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-claude-skill.zip) → **Customize → Skills → + → Create skill → Upload a skill** → 啟用。不用解壓縮；[找不到選單？](INSTALL.md#claude) |
+| Claude 網頁版／Desktop | [下載 skill ZIP](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-claude-skill.zip) → **Customize → Skills → + → Upload skill** → **Save** → 啟用。不用解壓縮；[找不到選單？](INSTALL.md#claude) |
 | Codex／ChatGPT desktop 的本機工作模式 | 貼上下方「Codex 桌面版」提示，直接從 GitHub 市集安裝，不必下載 ZIP |
-| ChatGPT 網頁版（工作區管理員） | **Admin → Plugins → Add → Import marketplace**，Source 填入 `https://github.com/kcchien/hc-reasoning`，Path 留空；[完整步驟](INSTALL.md#openai-web) |
-| ChatGPT 網頁版（一般個人帳號） | 尚未上架公開 Plugins Directory，目前沒有本專案已驗證的直接安裝入口 |
+| ChatGPT 網頁版（有 Skills 入口） | [下載 skill ZIP](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-claude-skill.zip) → [開啟 Skills](https://chatgpt.com/skills) → **Create → Upload from your computer**；[完整步驟](INSTALL.md#openai-web) |
 
 Claude Code、Codex CLI、Cursor 等開發工具，以下兩種 Skills CLI 安裝方式擇一即可。
 
@@ -54,20 +53,15 @@ npx skills@latest add https://github.com/kcchien/hc-reasoning
 
 完成後重新啟動桌面 app，在 Plugins Directory 選取 `kcchien-hc-reasoning` 並確認已啟用，再開新對話。[詳細步驟與適用條件](INSTALL.md#openai-desktop)。[OpenAI plugin ZIP](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-openai-plugin.zip)僅供手動本機部署或開發者送審，不是網頁版直接安裝檔。
 
-### ChatGPT 網頁版：由工作區管理員匯入
+### ChatGPT 網頁版：上傳 skill ZIP
 
-需要工作區提供 **Admin → Plugins** 管理入口；一般個人帳號不適用。
+1. [下載 hc-reasoning skill ZIP](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-claude-skill.zip)，不用解壓縮。
+2. [開啟 ChatGPT Skills](https://chatgpt.com/skills)，選 **Create → Upload from your computer**，上傳剛下載的檔案。
+3. 等掃描完成，確認 **Installed** 出現此 skill，再點開它，選 **Try in chat** 開新對話使用。
 
-1. 開啟 **Admin → Plugins → Add → Import marketplace**。
-2. **Source** 貼上以下網址，**Path 留空**，按 **Import marketplace** 並依提示授權 GitHub 存取：
+請使用 **Skills 的上傳入口**，不是一般聊天附件。這份 ZIP 也可安裝到 Claude；不要改用 OpenAI plugin ZIP 或 GitHub Source code ZIP。
 
-   ```text
-   https://github.com/kcchien/hc-reasoning
-   ```
-
-3. 匯入成功後，將 plugin 設為適用角色的 **Available**。成員即可在 **Plugins** 找到它並安裝，再開新對話使用。
-
-不必下載 ZIP。若看不到管理入口，請交給工作區管理員處理；本專案尚未上架公開 Plugins Directory，不能在一般聊天中上傳 ZIP 完成安裝。[詳細說明](INSTALL.md#openai-web) · [官方匯入步驟](https://learn.chatgpt.com/docs/enterprise/plugin-management)
+是否有此入口依帳號與工作區設定而異，不必一律透過管理員匯入市集。若網址未顯示 Skills，請從 **Plugins → Skills** 進入；仍沒有入口時，此帳號目前無法走這條路。若已安裝卻回報找不到 skill，重新整理 Skills 頁並用 **Try in chat** 開另一個新對話，再確認能讀取 `SKILL.md`。[詳細說明與管理員部署方式](INSTALL.md#openai-web)
 
 <a id="first-use"></a>
 ## 安裝後，試第一個問題
@@ -227,10 +221,10 @@ Review whether a problem is framed well, what the evidence supports, and which c
 
 Choose one installation route:
 
-- **Claude web/Desktop:** [Download the skill ZIP](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-claude-skill.zip), leave it zipped, then upload it through **Customize → Skills → + → Create skill → Upload a skill** and enable it.
+- **Claude web/Desktop:** [Download the skill ZIP](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-claude-skill.zip), leave it zipped, then upload it through **Customize → Skills → + → Upload skill**, select **Save**, and enable it.
 - **Codex desktop with Codex CLI installed:** Run `codex plugin marketplace add https://github.com/kcchien/hc-reasoning`, then `codex plugin add hc-reasoning@kcchien-hc-reasoning`. Restart the desktop app and start a new conversation. No ZIP is needed.
 - **ChatGPT web workspace admins:** Open **Admin → Plugins → Add → Import marketplace**, paste `https://github.com/kcchien/hc-reasoning` into Source, leave Path empty, and import. Make the plugin Available to the intended roles so members can install it from Plugins.
-- **Personal ChatGPT web accounts:** This plugin is not yet listed in the public Plugins Directory. The OpenAI ZIP is for manual local deployment or developer submission, not direct web installation.
+- **ChatGPT web with Skills available:** [Download the skill ZIP](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-claude-skill.zip), open [Skills](https://chatgpt.com/skills), choose **Create → Upload from your computer**, and wait for it to appear under **Installed**. Open the skill and select **Try in chat**. Availability varies by account and workspace; uploading a chat attachment is not installation.
 
 [Platform requirements and troubleshooting](INSTALL.md#english). For coding agents with terminal access, use either Skills CLI option below.
 

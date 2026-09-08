@@ -2,13 +2,13 @@
 
 [回到 README](README.md#install)
 
-選擇你實際使用的介面。Skills CLI、Claude 自訂 skill、OpenAI plugin 是不同的安裝入口，不會互相同步。
+選擇你實際使用的介面。ChatGPT／Claude 的 Skills 上傳、Skills CLI 與 Codex plugin 是不同的安裝入口；請在要使用的平台各自安裝。
 
 <a id="claude"></a>
 ## Claude 網頁版與 Desktop
 
 1. [下載 hc-reasoning-claude-skill.zip](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-claude-skill.zip)。不用解壓縮，也不要改用 GitHub 的 Source code ZIP。
-2. 開啟 Claude，進入 **Customize → Skills → + → Create skill → Upload a skill**，選取下載的 ZIP。此路徑依官方網頁說明；若 Desktop 選單不同，先在網頁版完成上傳，再確認 Desktop 的 Skills 清單。
+2. 開啟 Claude，進入 **Customize → Skills → + → Upload skill**，選取下載的 ZIP，等待預覽完成後按 **Save**。也可直接[開啟 Claude Skills](https://claude.ai/customize/skills/)。若 Desktop 選單不同，先在網頁版完成上傳，再確認 Desktop 的 Skills 清單。
 3. 確認清單中的 **hc-reasoning** 已啟用，開新對話，貼上 [README 的第一個問題](README.md#first-use)。
 
 看不到 Skills 時，先確認已啟用 code execution；工作區帳號也可能受到管理員權限限制。這是自訂 skill 的上傳入口，不是聊天附件或組織 plugin 上傳入口。[Claude 官方說明](https://support.claude.com/en/articles/12512180-use-skills-in-claude)
@@ -30,6 +30,14 @@ codex plugin add hc-reasoning@kcchien-hc-reasoning
 <a id="openai-web"></a>
 ## ChatGPT 網頁版
 
+1. [下載 hc-reasoning skill ZIP](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-claude-skill.zip)，不用解壓縮。這與 Claude 使用同一份檔案。
+2. [開啟 ChatGPT Skills](https://chatgpt.com/skills)，或從側邊欄 **Plugins → Skills** 進入。
+3. 選 **Create → Upload from your computer**，上傳 ZIP，等待安全掃描完成。
+4. 確認 **Installed** 出現此 skill。點開它，選 **Try in chat** 開新對話，再貼上 [README 的第一個問題](README.md#first-use)。
+
+此入口依帳號與工作區設定提供，不是只有工作區管理員才能使用。看不到 Skills 時，不能用一般聊天附件上傳代替安裝。若清單已安裝但對話回報找不到 skill，重新整理 Skills 頁，再用 **Try in chat** 開另一個新對話；請確認能讀取 `SKILL.md` 與參考檔，不能只看回答是否像在使用 skill。
+
+
 ### 有工作區管理員權限：直接匯入 GitHub 市集
 
 1. 開啟 **Admin → Plugins → Add → Import marketplace**。
@@ -41,11 +49,9 @@ codex plugin add hc-reasoning@kcchien-hc-reasoning
 
 本 repo 已包含 `.agents/plugins/marketplace.json` 與獨立 plugin，不需另外建立市集或上傳 ZIP。需要帳號具備此管理入口；匯入與角色權限由管理員控制。[官方匯入步驟](https://learn.chatgpt.com/docs/enterprise/plugin-management)
 
-### 一般個人帳號：目前尚未提供直接安裝
+### 不需要公開目錄上架
 
-本專案尚未上架公開 Plugins Directory。公開上架後，使用者才能在 **Plugins** 搜尋並安裝；GitHub Release 不等於 OpenAI 目錄上架。不要為了網頁版下載 OpenAI plugin ZIP，也不要把聊天附件上傳當作安裝。[官方發布流程](https://developers.openai.com/plugins/deploy/submission)
-
-部分工作區另有 **Plugins → Skills → Create → Upload from your computer** 入口；這與 plugin 市集不同。目前未完成該入口的格式與上傳實測，因此不提供未驗證的 ZIP 安裝承諾。[工作區 Skills 說明](https://help.openai.com/en/articles/20001066-skills-in-chatgpt)
+上述 Skills 上傳不需要本專案先上架公開 Plugins Directory，也不需要前往 OpenAI 開發者提交頁。OpenAI plugin ZIP 留給本機 plugin 部署或開發者送審，不是這個上傳入口的安裝包。
 
 ## 檔案大小與格式
 
@@ -59,8 +65,9 @@ codex plugin add hc-reasoning@kcchien-hc-reasoning
 <a id="english"></a>
 ## English
 
-- **Claude web/Desktop:** [Download the skill ZIP](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-claude-skill.zip), leave it zipped, then use **Customize → Skills → + → Create skill → Upload a skill**. Enable it and start a new conversation. Code execution and workspace permissions must allow skills.
+- **Claude web/Desktop:** [Download the skill ZIP](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-claude-skill.zip), leave it zipped, then use **Customize → Skills → + → Upload skill**, then **Save**. Enable it and start a new conversation. Code execution and workspace permissions must allow skills.
 - **Codex / ChatGPT desktop:** Run `codex plugin marketplace add https://github.com/kcchien/hc-reasoning`, then `codex plugin add hc-reasoning@kcchien-hc-reasoning`. Restart the desktop app and start a new conversation. No ZIP download is needed.
+- **ChatGPT web with Skills available:** [Download the skill ZIP](https://github.com/kcchien/hc-reasoning/releases/latest/download/hc-reasoning-claude-skill.zip), open [Skills](https://chatgpt.com/skills), choose **Create → Upload from your computer**, and wait for **Installed**. Open it and select **Try in chat**. If a new conversation cannot find it, refresh Skills and start another conversation; verify that it can read `SKILL.md` and the relevant reference file. Availability varies by account and workspace.
 - **ChatGPT web workspace admins:** Open **Admin → Plugins → Add → Import marketplace**, set Source to `https://github.com/kcchien/hc-reasoning`, leave Path empty, import, and make the plugin available to the intended roles. Members can then install it from Plugins. This requires the workspace admin feature; personal accounts cannot use this route. The plugin is not yet listed in the public directory.
 
 Both install archives are below 1 MB compressed and extracted. This is our packaging budget, not a claimed Claude limit. For terminal-based agents, use [Skills CLI](README.md#install).

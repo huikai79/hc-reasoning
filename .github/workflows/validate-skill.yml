@@ -1,0 +1,70 @@
+name: Validate skill
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.11"
+
+      - name: Validate required files and references
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          required = [
+              "SKILL.md",
+              "README.md",
+              "INSTALL.md",
+              "EXAMPLES.md",
+              "EVALUATION.md",
+              "CONTRIBUTING.md",
+              "LICENSE",
+          ]
+          missing = [p for p in required if not Path(p).exists()]
+          if missing:
+              raise SystemExit("Missing required files: " + ", ".join(missing))
+
+          skill = Path("SKILL.md").read_text(encoding="utf-8")
+          if not skill.startswith("---\n"):
+              raise SystemExit("SKILL.md is missing YAML frontmatter")
+
+          frontmatter = skill.split("---", 2)[1]
+          for key in ("name:", "description:"):
+              if key not in frontmatter:
+                  raise SystemExit(f"SKILL.md frontmatter is missing {key[:-1]}")
+
+          broken = []
+          for target in re.findall(r"\[[^\]]+\]\(([^)]+\.md)\)", skill):
+              if "://" in target or target.startswith("#"):
+                  continue
+              if not Path(target).exists():
+                  broken.append(target)
+
+          if broken:
+              raise SystemExit("Broken local Markdown references in SKILL.md: " + ", ".join(sorted(set(broken))))
+
+          print("HC skill structure validated.")
+          PY
+
+      - name: Validate packaged mirrors
+        run: python scripts/validate_packaging.py
